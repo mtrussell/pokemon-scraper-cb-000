@@ -17,8 +17,9 @@ class Pokemon
   end
 
   def self.find(id, database_connection)
-    pokemon = database_connection.execute("SELECT * FROM pokemon WHERE id = ?", id)
-    type = database_connection.execute("SELECT type FROM pokemon WHERE id = ?", id)
+    pokemon = database_connection.execute("SELECT * FROM pokemon WHERE id = ?", id).flatten
+    name = pokemon[1]
+    type = pokemon[2]
 
     binding.pry
     pokemon_inst = Pokemon.new(id: id, name: name, type: type, db: database_connection)
