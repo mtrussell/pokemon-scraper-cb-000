@@ -1,3 +1,5 @@
+require "pry"
+
 class Pokemon
   attr_reader :id, :name, :type, :db
   @@all = []
@@ -18,6 +20,7 @@ class Pokemon
     name = database_connection.execute("SELECT name FROM pokemon WHERE id = ?", id)
     type = database_connection.execute("SELECT type FROM pokemon WHERE id = ?", id)
 
+    
     pokemon_inst = Pokemon.new(id: id, name: name, type: type, db: database_connection)
   end
 
